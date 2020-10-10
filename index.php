@@ -21,49 +21,56 @@
                                 <div class="form-group">
                                     <label class="col-sm-4 control-label" for="firstname">First name</label>
                                     <div class="col-sm-5">
-                                        <input type="text" class="form-control" id="firstname" name="firstname" placeholder="First name" />
+                                        <input type="text" class="form-control" id="firstname" name="firstname" placeholder="First name" required/>
                                     </div>
                                 </div>
 
                                 <div class="form-group">
                                     <label class="col-sm-4 control-label" for="lastname">Last name</label>
                                     <div class="col-sm-5">
-                                        <input type="text" class="form-control" id="lastname" name="lastname" placeholder="Last name" />
+                                        <input type="text" class="form-control" id="lastname" name="lastname" placeholder="Last name" required/>
                                     </div>
                                 </div>
 
                                 <div class="form-group">
                                     <label class="col-sm-4 control-label" for="username">Username</label>
                                     <div class="col-sm-5">
-                                        <input type="text" class="form-control" id="username" name="username" placeholder="Username" />
+                                        <input type="text" class="form-control" id="username" name="username" placeholder="Username" required/>
                                     </div>
                                 </div>
 
                                 <div class="form-group">
                                     <label class="col-sm-4 control-label" for="email">Email</label>
                                     <div class="col-sm-5">
-                                        <input type="text" class="form-control" id="email" name="email" placeholder="Email" />
+                                        <input type="email" class="form-control" id="email" name="email" placeholder="Email" required/>
                                     </div>
                                 </div>
 
                                 <div class="form-group">
                                     <label class="col-sm-4 control-label" for="email">Phone Number</label>
                                     <div class="col-sm-5">
-                                        <input type="text" class="form-control" id="phone_number" name="phone_number" placeholder="Phone Number"  />
+                                        <input type="text" class="form-control" id="phone_number" name="phone_number" placeholder="Phone Number" minlength="10" maxlength="10" required />
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-sm-4 control-label">Date</label>
+                                    <div class="col-sm-5">
+                                        <input type="date" class="form-control" name="bday" required pattern="\d{4}-\d{2}-\d{2}" min="2020-11-01">
+                                    <span class="validity"></span>
                                     </div>
                                 </div>
 
                                 <div class="form-group">
                                     <label class="col-sm-4 control-label" for="email">Profile pic</label>
                                     <div class="col-sm-5">
-                                        <input type="file" class="form-control" id="profile_pic" name="profile_pic" accept="doc,pdf,rtf,docx" />
+                                        <input type="file" class="form-control" id="profile_pic" name="profile_pic" accept="doc,pdf,rtf,docx" required />
                                     </div>
                                 </div>
 
                                 <div class="form-group">
                                     <label class="col-sm-4 control-label" for="password">Password</label>
                                     <div class="col-sm-5">
-                                        <input type="password" class="form-control" id="password" name="password" placeholder="Password" />
+                                        <input type="password" class="form-control" id="password" name="password" placeholder="Password" required />
                                     </div>
                                 </div>
 
@@ -78,7 +85,7 @@
                                     <div class="col-sm-5 col-sm-offset-4">
                                         <div class="checkbox">
                                             <label>
-                                                <input type="checkbox" id="agree" name="agree" value="agree" />Please agree to our policy
+                                                <input type="checkbox" id="agree" name="agree" value="agree" required />Please agree to our policy
                                             </label>
                                         </div>
                                     </div>
