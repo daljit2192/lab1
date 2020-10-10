@@ -47,16 +47,16 @@
                                 </div>
 
                                 <div class="form-group">
-                                    <label class="col-sm-4 control-label">Phone Number</label>
+                                    <label class="col-sm-4 control-label" for="email">Phone Number</label>
                                     <div class="col-sm-5">
                                         <input type="text" class="form-control" id="phone_number" name="phone_number" placeholder="Phone Number"  />
                                     </div>
                                 </div>
 
                                 <div class="form-group">
-                                    <label class="col-sm-4 control-label">Profile pic</label>
+                                    <label class="col-sm-4 control-label" for="email">Profile pic</label>
                                     <div class="col-sm-5">
-                                        <input type="file" class="form-control" id="profile_pic" name="profile_pic" />
+                                        <input type="file" class="form-control" id="profile_pic" name="profile_pic" accept="doc,pdf,rtf,docx" />
                                     </div>
                                 </div>
 
