@@ -1,8 +1,10 @@
+<?php include 'submit.php';?>
 <html lang="en">
     <head>
         <title>Form Validations</title>
         <link rel="stylesheet" href="./assets/css/bootstrap.min.css">
         <link rel="stylesheet" href="./assets/css/style.css">
+
     </head>
     <body>
         <div class="container">
@@ -16,6 +18,24 @@
                         <div class="panel-heading">
                             <h3 class="panel-title">Signup Form</h3>
                         </div>
+                        <?php
+                            // Display Error message
+                            if(!empty($error_message)){
+                            ?>
+                                <div class="alert alert-danger">
+                                  <strong>Error!</strong> <?= $error_message ?>
+                                </div>
+                            <?php
+                            }
+                            // Display Success message
+                            if(!empty($success_message)){
+                            ?>
+                                <div class="alert alert-success">
+                                  <strong>Success!</strong> <?= $success_message ?>
+                                </div>
+                            <?php
+                            }
+                        ?>
                         <div class="panel-body">
                             <form id="signupForm" name="signup" method="post" class="form-horizontal" action="">
                                 <div class="form-group">
@@ -26,28 +46,28 @@
                                 </div>
 
                                 <div class="form-group">
-                                    <label class="col-sm-4 control-label" for="lastname">Last name</label>
+                                    <label class="col-sm-4 control-label" >Last name</label>
                                     <div class="col-sm-5">
                                         <input type="text" class="form-control" id="lastname" name="lastname" placeholder="Last name" required/>
                                     </div>
                                 </div>
 
                                 <div class="form-group">
-                                    <label class="col-sm-4 control-label" for="username">Username</label>
+                                    <label class="col-sm-4 control-label" >Username</label>
                                     <div class="col-sm-5">
                                         <input type="text" class="form-control" id="username" name="username" placeholder="Username" pattern="[a-zA-Z0-9]+" required/>
                                     </div>
                                 </div>
 
                                 <div class="form-group">
-                                    <label class="col-sm-4 control-label" for="email">Email</label>
+                                    <label class="col-sm-4 control-label" >Email</label>
                                     <div class="col-sm-5">
                                         <input type="email" class="form-control" id="email" name="email" placeholder="Email" required/>
                                     </div>
                                 </div>
 
                                 <div class="form-group">
-                                    <label class="col-sm-4 control-label" for="email">Phone Number</label>
+                                    <label class="col-sm-4 control-label" >Phone Number</label>
                                     <div class="col-sm-5">
                                         <input type="text" class="form-control" id="phone_number" name="phone_number" placeholder="Phone Number" minlength="12" maxlength="12" pattern="\d{3}[\-]\d{3}[\-]\d{4}"  title="xxx-xxx-xxxx"required />
                                     </div>
@@ -73,27 +93,27 @@
                                 </div>
 
                                 <div class="form-group">
-                                    <label class="col-sm-4 control-label" for="email">Profile pic</label>
+                                    <label class="col-sm-4 control-label" >Profile pic</label>
                                     <div class="col-sm-5">
                                         <input type="file" class="form-control" id="profile_pic" name="profile_pic" accept="doc,pdf,rtf,docx" required />
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <label class="col-sm-4 control-label" for="url">refernce url</label>
+                                    <label class="col-sm-4 control-label" >refernce url</label>
                                     <div class="col-sm-5">
                                         <input type="url" class="form-control" id="url" name="url" required />
                                     </div>
                                 </div>
 
                                 <div class="form-group">
-                                    <label class="col-sm-4 control-label" for="password">Password</label>
+                                    <label class="col-sm-4 control-label" >Password</label>
                                     <div class="col-sm-5">
                                         <input type="password" class="form-control" id="password" name="password" placeholder="Password" pattern="(?=^.{8,}$)((?=.*\d)|(?=.*\W+))(?![.\n])(?=.*[A-Z])(?=.*[a-z]).*$" required />
                                     </div>
                                 </div>
 
                                 <div class="form-group">
-                                    <label class="col-sm-4 control-label" for="confirm_password">Confirm password</label>
+                                    <label class="col-sm-4 control-label" >Confirm password</label>
                                     <div class="col-sm-5">
                                         <input type="password" class="form-control" id="confirm_password" name="confirm_password" placeholder="Confirm password" />
                                     </div>

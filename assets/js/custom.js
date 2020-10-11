@@ -40,7 +40,7 @@ $(function() {
             phone_number: {
                 required: true,
                 phoneUS:true,
-                maxlength:10,
+                maxlength:10, 
                 minlength:10
             },
             agree: "required",
