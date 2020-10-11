@@ -1,0 +1,38 @@
+JSvalidation
+
+1. Required
+2. email check
+3. password length
+4. password match with confirm password
+5. phone number check
+6. no special symbol in username
+7. todays date
+8. file size
+9. file extension
+
+PHP validations
+1. Remove white space from fields
+2. Check if fields are empty
+3. Password check
+4. email check
+5. Existing username check
+6. file extension check
+7. file size check
+8. Phone number check
+9. Username is having any special symbols or not
+
+Html validation
+1. required
+2. email check
+3. min length check
+4. max length check
+5. url
+6. phone number
+7. username alphanumeric
+8. valid date
+9. no past date
+10. phone number should start with 807 in phone number
+11. age must be between 18-25 
+12. dont use number and special characters in firstanme
+
+
