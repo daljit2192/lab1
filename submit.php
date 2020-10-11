@@ -62,6 +62,43 @@
             $isValid = false;
             $error_message = "No special symbol allowed in username";
         }
+        // check file extension
+        $allowed = array('png', 'jpg');
+        $ext = pathinfo($profile_pic, PATHINFO_EXTENSION);
+        if (!in_array($ext, $allowed)) {
+            $isValid = false;
+            $error_message = "Only jpg and png files are allowed to upload";
+        }
+
+        // check file size
+        if ($_FILES['profile_pic']['size'] > 2000000) {
+            $isValid = false;
+            $error_message = 'Exceeded filesize limit.';
+        }
+
+        if($isValid){
+            // check if username already exists or not
+            $sql = "SELECT * FROM signup WHERE username = '".$username."'";
+            $result = $conn->query($sql);
+            if ($result->num_rows > 0) {
+                $error_message = "Username already exists! Choose another one and try again.";
+            }
+            else {
+                if($isValid){
+                    try{
+                        $password = md5($password);
+                        $sql = "INSERT INTO signup(firstname,lastname,username,email,phone_number,bdate,profile_pic,reference_url,password ) values('$fname','$lname','$username','$email','$phone_number','$bdate','$profile_pic','$url','$password')";
+                        if ($conn->query($sql) === TRUE) {
+                            $success_message = "Account created successfully.";
+                        } else {
+                            $error_message = "Please try again.";
+                        }
+                    } catch (Exception $e){
+                        echo "".$e->getMessage();
+                    }
+                }
+            }
+        }
         $conn->close();
     }
 ?>
