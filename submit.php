@@ -26,7 +26,7 @@
         $email = trim($_POST['email']);
         $phone_number = trim($_POST['phone_number']);
         $bdate = trim($_POST['bday']);
-        $profile_pic = trim($_POST['profile_pic']);
+        $profile_pic = $_FILES['profile_pic']['name'];
         $url = trim($_POST['url']);
         $password = trim($_POST['password']);
         $confirmpassword = trim($_POST['confirm_password']);
@@ -62,7 +62,6 @@
             $isValid = false;
             $error_message = "No special symbol allowed in username";
         }
-        
         $conn->close();
     }
 ?>

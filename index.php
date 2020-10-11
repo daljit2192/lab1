@@ -11,7 +11,7 @@
             <div class="row">
                 <div class="col-sm-8 col-sm-offset-2">
                     <div class="page-header">
-                        
+                       
                     </div>
 
                     <div class="panel panel-default">
@@ -69,7 +69,19 @@
                                 <div class="form-group">
                                     <label class="col-sm-4 control-label" >Phone Number</label>
                                     <div class="col-sm-5">
-                                        <input type="text" class="form-control" id="phone_number" name="phone_number" placeholder="Phone Number" minlength="10" maxlength="10" pattern="\d{3}[\-]\d{3}[\-]\d{4}" required />
+                                        <input type="text" class="form-control" id="phone_number" name="phone_number" placeholder="Phone Number" minlength="12" maxlength="12" pattern="\d{3}[\-]\d{3}[\-]\d{4}"  title="xxx-xxx-xxxx"required />
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-sm-4 control-label" for="email">Thunder bay phone Number</label>
+                                    <div class="col-sm-5">
+                                        <input type="text" class="form-control" id="phone_number" name="phone_number" placeholder="Phone Number" minlength="12" maxlength="12" pattern="[8,0,7]{3}-[0-9]{3}-[0-9]{4}" title="phone number should start with 807" required />
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-sm-4 control-label" for="email">Age (18-25)</label>
+                                    <div class="col-sm-5">
+                                        <input type="number" class="form-control" id="number" name="amount" value="1" min="19" max="25">
                                     </div>
                                 </div>
                                 <div class="form-group">
