@@ -35,7 +35,7 @@
                                 <div class="form-group">
                                     <label class="col-sm-4 control-label" for="username">Username</label>
                                     <div class="col-sm-5">
-                                        <input type="text" class="form-control" id="username" name="username" placeholder="Username" required/>
+                                        <input type="text" class="form-control" id="username" name="username" placeholder="Username" pattern="[a-zA-Z0-9]+" required/>
                                     </div>
                                 </div>
 
@@ -49,7 +49,7 @@
                                 <div class="form-group">
                                     <label class="col-sm-4 control-label" for="email">Phone Number</label>
                                     <div class="col-sm-5">
-                                        <input type="text" class="form-control" id="phone_number" name="phone_number" placeholder="Phone Number" minlength="10" maxlength="10" required />
+                                        <input type="text" class="form-control" id="phone_number" name="phone_number" placeholder="Phone Number" minlength="10" maxlength="10" pattern="\d{3}[\-]\d{3}[\-]\d{4}" required />
                                     </div>
                                 </div>
                                 <div class="form-group">
@@ -66,11 +66,17 @@
                                         <input type="file" class="form-control" id="profile_pic" name="profile_pic" accept="doc,pdf,rtf,docx" required />
                                     </div>
                                 </div>
+                                <div class="form-group">
+                                    <label class="col-sm-4 control-label" for="url">refernce url</label>
+                                    <div class="col-sm-5">
+                                        <input type="url" class="form-control" id="url" name="url" required />
+                                    </div>
+                                </div>
 
                                 <div class="form-group">
                                     <label class="col-sm-4 control-label" for="password">Password</label>
                                     <div class="col-sm-5">
-                                        <input type="password" class="form-control" id="password" name="password" placeholder="Password" required />
+                                        <input type="password" class="form-control" id="password" name="password" placeholder="Password" pattern="(?=^.{8,}$)((?=.*\d)|(?=.*\W+))(?![.\n])(?=.*[A-Z])(?=.*[a-z]).*$" required />
                                     </div>
                                 </div>
 

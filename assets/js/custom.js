@@ -1,55 +1,56 @@
-$(function() {
-    //check for phon number
+$(function(){
+
     jQuery.validator.addMethod("phoneUS", function(phone_number, element) {
-    phone_number = phone_number.replace(/\s+/g, "");
-    return this.optional(element) || phone_number.length > 9 &&
+        phone_number = phone_number.replace(/\s+/g, "");
+        return this.optional(element) || phone_number.length > 9 &&
         phone_number.match(/^(\+?1-?)?(\([2-9]\d{2}\)|[2-9]\d{2})-?[2-9]\d{2}-?\d{4}$/);
     }, "Please specify a valid phone number");
-
-    jQuery.validator.addMethod("alphanumeric", function(value, element) {
-        return this.optional(element) || /^\w+$/i.test(value);
-    }, "Letters, numbers, and underscores only please");
-
-    $.validator.addMethod('filesize', function (value, element, param) {
-        return this.optional(element) || (element.files[0].size <= param)
-    }, 'File size must be less than {0}');
-
-     $("form[name='signup']").validate({
+    $("form[name='signup']").validate({
         rules: {
+            firstname: "required",
+            lastname: "required",
+            email: {
+                required: true,
+                email: true
+            },
+            password: {
+                required: true,
+                minlength: 5
+            },
+            confirm_password: {
+                required: true,
+                minlength: 5,
+                equalTo: "#password"
+            },
             phone_number: {
                 required: true,
                 phoneUS:true,
-                maxlength:10, 
+                maxlength:10,
                 minlength:10
             },
-            agree: "required",
-            username: {
-                required: true,
-                maxlength: 15,
-                alphanumeric: true
-            },
-            profile_pic: {
-                required: true,
-                filesize:2
-            }
+            agree: "required"
         },
         messages: {
+            firstname: "Please enter your first name",
+            lastname: "Please enter your last name",
+            password: {
+                required: "Please provide a password",
+                minlength: "Your password must be at least 5 characters long"
+            },
+            email: "Please enter a valid email address",
+            confirm_password: {
+                required: "Please provide a password",
+                minlength: "Your password must be at least 5 characters long",
+                equalTo: "Please enter the same password as above"
+            },
             phone_number: {
                 required: "Please provide a phone number",
                 matches: "Please enter the valid phone number",
                 minlength: "Your phone number must be of 10 numbers",
                 maxlength: "Your phone number must be of 10 numbers",
             },
-            agree: "Please accept our policy",
-            username: {
-                required: "Please provide a phone number",
-                maxlength: "Username cannot be more than 15 chracters"
-            },
-            profile_pic: {
-                required: "Please provide a provide a profile picture",
-                filesize: "File size is greater than 2MB"
-            },
-            
+            agree: "Please accept our policy"
+           
         },
         errorElement: "em",
         errorPlacement: function ( error, element ) {
