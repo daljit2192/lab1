@@ -1,104 +1,69 @@
 <?php
-    $servername = "localhost";
-    $username = "root";
-    $password = "";
-    $dbname = "lab1";
+    include 'lab2.php';
 
-    // Create connection
-    $conn = new mysqli($servername, $username, $password, $dbname);
+    $lab2Obj = new lab2;
+    
+    $countries = $lab2Obj->getAllCountries();
+    $states = [];
+    $singleCountry = [];
 
-    // Check connection
-    if ($conn->connect_error)
-    {
-        die("Connection failed: " . $conn->connect_error);
+    if (isset($_GET['country'])){
+
+        $states = $lab2Obj->getAllStates($_GET['country']);
     }
-    $error_message = "";
-    $success_message = "";
 
-    // Register user
-    if (isset($_POST['signup']))
-    {
+    if (isset($_GET['editCountry'])){
 
-        //check if any space is coming in data or not
-        $fname = trim($_POST['firstname']);
-        $lname = trim($_POST['lastname']);
-        $username = trim($_POST['username']);
-        $email = trim($_POST['email']);
-        $phone_number = trim($_POST['phone_number']);
-        $bdate = trim($_POST['bday']);
-        $profile_pic = $_FILES['profile_pic']['name'];
-        $url = trim($_POST['url']);
-        $password = trim($_POST['password']);
-        $confirmpassword = trim($_POST['confirm_password']);
-        $isValid = true;
-
-        // Check fields are empty or not
-        if ($fname == '' || $lname == '' || $username == '' || $email == '' || $phone_number == '' || $bdate == '' || $profile_pic == '' || $url == '' || $password == '' || $confirmpassword == '')
-        {
-            $isValid = false;
-            $error_message = "Please fill all fields.";
-        }
-
-        // Check if confirm password matching or not
-        if ($isValid && ($password != $confirmpassword))
-        {
-            $isValid = false;
-            $error_message = "Confirm password not matching";
-        }
-        // Check if Email-ID is valid or not
-        if ($isValid && !filter_var($email, FILTER_VALIDATE_EMAIL)) {
-            $isValid = false;
-            $error_message = "Invalid Email-ID.";
-        }
-
-        //check if phone number is having any string or not
-        if($isValid && !is_numeric($phone_number) ){
-            $isValid = false;
-            $error_message = "Confirm password not matching";
-        }
-
-        //check if username is having any special symbol
-        if(!ctype_alnum($username)){
-            $isValid = false;
-            $error_message = "No special symbol allowed in username";
-        }
-        // check file extension
-        $allowed = array('png', 'jpg');
-        $ext = pathinfo($profile_pic, PATHINFO_EXTENSION);
-        if (!in_array($ext, $allowed)) {
-            $isValid = false;
-            $error_message = "Only jpg and png files are allowed to upload";
-        }
-
-        // check file size
-        if ($_FILES['profile_pic']['size'] > 2000000) {
-            $isValid = false;
-            $error_message = 'Exceeded filesize limit.';
-        }
-
-        if($isValid){
-            // check if username already exists or not
-            $sql = "SELECT * FROM signup WHERE username = '".$username."'";
-            $result = $conn->query($sql);
-            if ($result->num_rows > 0) {
-                $error_message = "Username already exists! Choose another one and try again.";
-            }
-            else {
-                if($isValid){
-                    try{
-                        $password = md5($password);
-                        $sql = "INSERT INTO signup(firstname,lastname,username,email,phone_number,bdate,profile_pic,reference_url,password ) values('$fname','$lname','$username','$email','$phone_number','$bdate','$profile_pic','$url','$password')";
-                        if ($conn->query($sql) === TRUE) {
-                            $success_message = "Account created successfully.";
-                        } else {
-                            $error_message = "Please try again.";
-                        }
-                    } catch (Exception $e){
-                        echo "".$e->getMessage();
-                    }
-                }
-            }
-        }
-        $conn->close();
+        $singleCountry = $lab2Obj->getSingleCountry($_GET['editCountry']);
     }
+
+    if (isset($_GET['editState'])){
+
+        $singleState = $lab2Obj->getSingleState($_GET['editState']);
+        // echo "<pre>"; print_r($singleState);die;
+    }
+
+    if(isset($_POST["add_country"])){
+            
+        $countries = $lab2Obj->addCountry($_POST["country_name"], $_POST["country_acronym"]);
+        // echo "<pre>"; print_r($countries);die;  
+    }
+
+    if(isset($_POST["update_country"])){
+        $countries = array();
+        $countryData = array('country_id'=>$_POST['country_id'], 'country_name'=>$_POST['country_name'], "country_acronym"=>$_POST["country_acronym"]); 
+        // echo "<pre>"; print_r($countries);die;  
+        $lab2Obj->updateCountry($countryData);
+        $singleCountry = $lab2Obj->getSingleCountry($_GET['editCountry']);
+        $countries = $lab2Obj->getAllCountries();
+    }
+
+    if(isset($_POST["update_state"])){
+        $states = array();
+        $stateData = array('state_id'=>$_POST['state_id'],'country_id'=>$_POST['country_id'], 'state_profile_image'=>$_FILES["state_profile_image"], 'state_name'=>$_POST['state_name']); 
+        $lab2Obj->updateState($stateData);
+        $singleState = $lab2Obj->getSingleState($_GET['editState']);
+        $states = $lab2Obj->getAllStates($_POST['country_id']);
+    }
+
+    if(isset($_POST["add_state"])){
+
+        $stateData = array('state_name'=> $_POST["state_name"], 'country_id'=>$_POST["country_id"], 'state_profile_image'=>$_FILES["state_profile_image"], 'state_sample_images'=>$_FILES["state_sample_images"]);
+        // echo "<pre>";print_r($stateData);die;
+        $states = $lab2Obj->addState($stateData);
+    }
+
+    if(isset($_POST["delete_country"])){
+        // echo $_POST["country_id_hidden"];die;
+        $lab2Obj->deleteCountry($_POST["country_id_hidden"]);
+        $countries = $lab2Obj->getAllCountries();
+    }
+    
+    if(isset($_POST["delete_state"])){
+        // echo $_POST["country_id_hidden"];die;
+        $lab2Obj->deleteState($_POST["state_id_hidden"]);
+        $countries = $lab2Obj->getAllCountries();
+    }
+
+
 ?>
